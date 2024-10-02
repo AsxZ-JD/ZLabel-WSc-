@@ -309,7 +309,7 @@ class MyTabView(customtkinter.CTkTabview):
             print("checkbox toggled, current value:", check_var.get())
 
         check_var = customtkinter.StringVar(value="on")
-        self.checkbox = customtkinter.CTkCheckBox(master=self.tab("Main"), text="CTkCheckBox", command=checkbox_event,
+        self.checkbox = customtkinter.CTkCheckBox(master=self.tab("Main"), text="¿Certificada?", command=checkbox_event,
                                      variable=check_var, onvalue="on", offvalue="off")
         self.checkbox.grid(row=7, column=1, padx=(0, 2), pady=(0,35))
 
