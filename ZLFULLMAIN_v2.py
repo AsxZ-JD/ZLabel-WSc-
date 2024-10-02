@@ -307,22 +307,14 @@ class MyTabView(customtkinter.CTkTabview):
         self.button = customtkinter.CTkButton(master=self.tab("Main"), text="Imprimir", corner_radius=35, font=customtkinter.CTkFont(family="Arial", size=15, weight="bold"),  command=start_new_thread)#self.button = customtkinter.CTkButton(self, text="Imprimir", corner_radius=35, font=customtkinter.CTkFont(family="Arial", size=15, weight="bold"),  command=threading.Thread(target=button_press).start)
         self.button.grid(row=10, column=1, padx=0, pady=(5, 0))
 
-        #VALIDATE BARCODE
-        self.labelbc = customtkinter.CTkLabel(master=self.tab("Main"), text="", font=customtkinter.CTkFont(family="Arial", size=12, weight="bold"))
-        self.labelbc.grid(row=11, column=0, padx=0, pady=(5,0), columnspan=2)
+        #CHECKBOX
+        def checkbox_event():
+            print("checkbox toggled, current value:", check_var.get())
 
-        def validate_input(bc):
-            print(type(bc))
-            input_data = bc
-            if len(input_data)==10:
-                try:
-                    int(input_data)
-                    #self.labelbc.configure(text=f"Valid numeric value: {input_data}",fg_color="green",)
-                    return True
-                except ValueError:
-                    self.labelbc.configure(text=f"Barcode debe ser 6 caracteres numéricos",text_color="#ff566d")
-            else:
-                self.labelbc.configure(text=f"Barcode debe ser 6 caracteres numéricos",text_color="#ff566d")
+        check_var = customtkinter.StringVar(value="on")
+        self.checkbox = customtkinter.CTkCheckBox(master=self.tab("Main"), text="¿Certificada?", command=checkbox_event,
+                                     variable=check_var, onvalue="on", offvalue="off")
+        self.checkbox.grid(row=10, column=0, padx=(0, 2), pady=(5,0))
         #---------------------------------------------------------------
         #********************************SETUP TAB**************************************************
         
@@ -403,5 +395,4 @@ class App(customtkinter.CTk):
 app = App()
 
 app.mainloop()
-
 
